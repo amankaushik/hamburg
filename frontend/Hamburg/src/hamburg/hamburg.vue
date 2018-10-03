@@ -1,22 +1,14 @@
 <template>
-  <div id="app">
-    <header>
-      <nav class="top-bar">
-        <ul>
-
-        </ul>
-      </nav>
-    </header>
-  </div>
 </template>
 
 <script>
-
+export default{
+  name: 'Hamburg',
+  data() {},
+  computed: {},
+  methods: {},
+};
 </script>
 
 <style>
-.top-bar {
-  position: sticky;
-  top: 10px;
-}
 </style>
