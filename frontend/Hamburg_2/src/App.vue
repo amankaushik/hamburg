@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Search from './components/Search.vue'
+import Search from './components/searchPage.vue'
 
 export default {
   name: 'app',
