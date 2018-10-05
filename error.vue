@@ -17,13 +17,11 @@ export default {
 getError() {
 	    this.$http.get(endpoint).then(function(response) {
         this.results = response.body.results
-        if (response.status === 404 ) {
-         this.error = 'The page you were looking for was not found.' 
-         else if  (response.body.errors) {
+     
+        if  (response.body.errors || response.status !=== 200 ) {
           this.error = response.body.errors[0]
-        } 
-        else {
-          this.error = 'The page you were looking for does not exist.'
+        } else {
+          this.error = ''
         }
       }
 }
