@@ -2,6 +2,7 @@
 </template>
 <script>
 export default {
+  name:"searchResult",
   data () {
     return {
       placeholder: 'Search Movies',

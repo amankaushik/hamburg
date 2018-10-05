@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Search />
+    <SearchPage />
   </div>
 </template>
 
 <script>
-import Search from './components/searchPage.vue'
+import SearchPage from './components/searchPage.vue'
 
 export default {
   name: 'app',
   components: {
-    Search
+    SearchPage
   }
 }
 </script>
