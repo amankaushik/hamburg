@@ -6,3 +6,6 @@ __pycache__/
 .coverage
 .pytest_cache/
 moviedb_data/
+frontend/Hamburg/public/favicon.ico
+frontend/Hamburg/package-lock.json
+frontend/Hamburg/package.json
