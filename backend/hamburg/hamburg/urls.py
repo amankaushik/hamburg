@@ -21,4 +21,8 @@ from hamburg_api import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^api/v1/moviedb/search/$', views.SearchView.as_view()),
+    re_path(r'^api/v1/alerts/save/$', views.EmailAlertView.as_view()),
+    re_path(r'^api/v1/schedules/email/$', views.ScheduleRunView.as_view()),
+    re_path(r'^api/v1/moviedb/details/$', views.SearchView.as_view()),
+    re_path(r'^api/v1/moviedb/showtimes/$', views.SearchView.as_view()),
 ]
