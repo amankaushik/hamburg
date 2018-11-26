@@ -35,8 +35,13 @@ Based on:
                         const height = graphDiv.clientHeight;
 
                         let force = d3.layout.force()
-                            .linkDistance(200)
-                            .charge(-2000)
+                            .linkDistance(150)
+                            .gravity(0.05)
+                            .charge(-3000)
+                            .friction(0.8)
+                            .linkStrength(function (l, i) {
+                                return 1;
+                            })
                             .size([width, height])
                             .on("tick", tick);
 
@@ -64,17 +69,21 @@ Based on:
                                 'stdDeviation': 7
                             });
 
-                        var linearGradient = defs.append("linearGradient")
+                        let colorScale = d3.scale.linear()
+                            .range(["#485563", "#29323c"]);
+
+                        let linearGradient = defs.append("linearGradient")
                             .attr("id", "text-gradient");
-                        linearGradient.append("stop")
-                            .attr("offset", "0%")
-                            .attr("stop-color", "#16222a");
-                        linearGradient.append("stop")
-                            .attr("offset", "33%")
-                            .attr("stop-color", "#16222a");
-                        linearGradient.append("stop")
-                            .attr("offset", "66%")
-                            .attr("stop-color", "#3a6073");
+
+                        linearGradient.selectAll("stop")
+                            .data(colorScale.range())
+                            .enter().append("stop")
+                            .attr("offset", function (d, i) {
+                                return i / (colorScale.range().length - 1);
+                            })
+                            .attr("stop-color", function (d) {
+                                return d;
+                            });
 
                         function checkFill(d) {
                             if (d.text_only === true) {
@@ -96,6 +105,7 @@ Based on:
                         root = response.body;
                         createDefs(root);
                         let preloadDefs = document.getElementsByTagName("defs");
+
                         function preload() {
                             let imageObj = new Image();
                             let images = [];
@@ -110,6 +120,7 @@ Based on:
                                 imageObj.src = images[i];
                             }
                         }
+
                         preload();
                         svg.append("rect")
                             .attr("width", "100%")
@@ -271,8 +282,7 @@ Based on:
                             if (d.visibility === true) {
                                 d.visibility = false;
                                 updateNodes(d);
-                            }
-                            else {
+                            } else {
                                 d.visibility = true;
                             }
                             update(d);
@@ -437,14 +447,21 @@ Based on:
     }
 
     div.tooltip {
+        color: #f9f9f9;
         position: absolute;
         text-align: center;
         width: auto;
         height: auto;
-        padding: 2px;
-        background: lightsteelblue;
-        border: 0px;
-        border-radius: 8px;
+        /*padding: 2px;*/
+        /*background: lightsteelblue;*/
+        border: 1px dotted #8D9DB6;
+        padding: 5px;
+        border-radius: 3px;
+        /*border: 0px;*/
+        /*border-radius: 8px;*/
         pointer-events: none;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        background: rgba(110, 130, 163, 0.7);
+        z-index: 50;
     }
 </style>
