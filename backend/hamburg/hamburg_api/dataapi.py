@@ -395,7 +395,8 @@ class ExploreDataGetter(MovieDBResults):
         explore['level'] = 0
         explore['children'] = []
         explore['children'].append({'name': 'Overview', 'tooltip': 'Overview', 'level': 1,\
-                'img': OVERVIEW_KEY, 'children': [{'tooltip': value, 'name': key, 'level': 2,\
+                'img': OVERVIEW_KEY, 'children': [{'tooltip': value,\
+                'name': ExploreDataGetter.format_name(key), 'level': 2,\
                 'text_only': True} for key, value in data['details'].items()]})
         explore['children'].append({'name': 'Genres', 'tooltip': 'Genres', 'level': 1,\
                         'img': GENRE_KEY, 'children': data['genres']})
@@ -419,6 +420,11 @@ class ExploreDataGetter(MovieDBResults):
                 'vote_avg': data.get('vote_average'), 'overview': data.get('overview'),\
                 'img': data.get('poster_path'), 'backdrop': data.get('backdrop_path'),\
                 'realease_date': data.get('release_date')}
+
+    @staticmethod
+    def format_name(name, delim='_', join_on=' '):
+        """format name"""
+        return join_on.join(map(str.capitalize, name.split(delim)))
 
     @staticmethod
     def _process_genres(data, level=2):
