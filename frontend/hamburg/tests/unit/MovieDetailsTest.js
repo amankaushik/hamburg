@@ -21,6 +21,13 @@ describe('MovieDetails', () => {
         input1.trigger('input');
 
         expect(wrapper.vm.$data.title).toBe("Aquaman");
-        
+
+        expect(wrapper.vm.$data.release_date).toBe("");
+
+        const input2 = wrapper.find('input');
+        input2.element.value = "2018-12-12";
+        input2.trigger('input');
+
+        expect(wrapper.vm.$data.release_date).toBe("2018-12-12");
     })
 });
