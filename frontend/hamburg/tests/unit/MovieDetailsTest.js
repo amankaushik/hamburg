@@ -22,7 +22,7 @@ describe('MovieDetails', () => {
 
         expect(wrapper.vm.$data.title).toBe("Aquaman");
 
-        expect(wrapper.vm.$data.release_date).toBe("");
+        expect(wrapper.vm.$data.release_date).toBe(" ");
 
         const input2 = wrapper.find('input');
         input2.element.value = "2018-12-12";
