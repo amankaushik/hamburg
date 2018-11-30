@@ -13,5 +13,13 @@ describe('headed', () => {
         input.trigger('input');
 
         expect(wrapper.vm.$data.query).toBe("Venom");
+
+        expect(wrapper.vm.$data.error).toBe(" ");
+
+        const input1 = wrapper.find('input');
+        input1.element.value = "Not found";
+        input1.trigger('input');
+
+        expect(wrapper.vm.$data.error).toBe("Not found");
     })
 });
