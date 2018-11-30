@@ -1,5 +1,5 @@
 <template>
-    <div class="showtime">
+    <div class="cinema">
         <headed/>
         <section v-if="error.length" class="section">
             <div class="notification is-danger">
@@ -7,7 +7,6 @@
             </div>
         </section>
         <section v-else class="section">
-            <span class="movTitle">{{ name }}</span>
             <ul class="list-unstyled" v-for="(result, index) in cinemas" :key="index">
                 <transition name="fade">
                     <b-card class="bucket">
@@ -29,19 +28,19 @@
     import foot from "@/components/footerSection.vue";
 
     export default {
-        name: "ShowtimesView",
+        name: "CinemaView",
         mounted: function () {
-            this.getShowtimes();
+            this.getCinemaDetails();
         },
         components: {
             headed,
             foot,
         },
         methods: {
-            getShowtimes() {
+            getCinemaDetails() {
                 this.$http.get(this.endpoint).then(
                     function (response) {
-                        this.cinemas = response.body.cinemas;
+                        this.cinemas = response.body;
                         if (response.body.errors) {
                             this.error = response.body.errors[0];
                         } else {
@@ -61,19 +60,10 @@
         },
         data: function () {
             return {
-                endpoint: process.env.VUE_APP_SHOWTIMES_ENDPOINT + this.$route.params.sid + "&imdb_id=" + this.$route.params.imdb + "&movie_name=" + this.$route.params.name,
-                name: this.$route.params.name,
+                endpoint: process.env.VUE_APP_SHOWTIMES_ENDPOINT,
                 cinemas: '',
                 error: '',
             };
         }
     }
 </script>
-<style scoped>
-    .movTitle {
-        color: white;
-        font-size: 36px;
-        text-shadow: 1px 1px 5px #333;
-        font-weight: bold;
-    }
-</style>

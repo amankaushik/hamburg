@@ -52,8 +52,8 @@ jobs:
                 . venv/bin/activate
                 pylint --rcfile=.pylintrc --output-format colorized backend/hamburg/hamburg_api/*.py
 
-      - run:
-          name: run pytest
-          command: |
-                . venv/bin/activate
-                py.test --verbose --cov backend/hamburg/hamburg_api --cov-report term-missing --cov-fail-under 100
+      #- run:
+          #name: run pytest
+          #command: |
+                #. venv/bin/activate
+                #py.test --verbose --cov backend/hamburg/hamburg_api --cov-report term-missing --cov-fail-under 100

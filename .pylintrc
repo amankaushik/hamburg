@@ -139,7 +139,8 @@ disable=print-statement,
         xreadlines-attribute,
         deprecated-sys-function,
         exception-escape,
-        comprehension-escape
+        comprehension-escape,
+  no-member
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -469,7 +470,7 @@ redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
 max-args=12
 
 # Maximum number of attributes for a class (see R0902).
-max-attributes=25
+max-attributes=35
 
 # Maximum number of boolean expressions in an if statement.
 max-bool-expr=5
