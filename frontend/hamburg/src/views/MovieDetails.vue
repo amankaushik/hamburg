@@ -48,7 +48,7 @@
                             <b-btn class="movAV" v-bind:to="{name: 'explore', params: {mid: result.id}}">Explore
                                 Movie
                             </b-btn>
-                            <b-btn class="movVC" v-bind:to="{name: 'showtime', params: {sid: result.id, imdb:result.imdb_id, name: result.title}}">
+                            <b-btn class="movVC" v-if="!alert" v-bind:to="{name: 'showtime', params: {sid: result.id, imdb:result.imdb_id, name: result.title}}">
                                 View Showtimes
                             </b-btn>
                         </div>
